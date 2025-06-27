@@ -52,5 +52,5 @@ def borrow_Status():
     pass
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     main()
