@@ -3,7 +3,7 @@ Mini Library by console control
 Hello, everyone this Code its create for solving issues about of how to better organize books and clients.
 
 MiniLibrary Project:
-It's purpose allow registration books and customers, and simulate lending books and returns in a simple way. Do it with functions and basics data structures, not need multiple files to do it.
+It's purpose allow registration books and customers, and simulate lending books and returns in a simple way. Do it with functions and basics data structures, not need multiple files to do it. 
 -> use functions
 -> organize the code clearly
 -> create a console interface
