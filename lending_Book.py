@@ -62,14 +62,14 @@ def book_Record():
     author = input("Enter a book author: ")
     isbn = input("Enter a ISBN for book: ")
     books.append(
-        {"Title": title, "Author": author, "ISBN": isbn, "Status": "available"}
+        {"Title": title, "Author": author, "ISBN": isbn, "Status": "Available"}
     )
     print("Book List update sucessful!✅")
 
 
 # This function create a new customer at the customer list
 def customer_Record():
-    global customer
+    global customers
     print("🤓===Create a new Customer===🤓")
     name = input("Enter full name: ")
     phone_Number = input("Enter Phone number: ")
@@ -81,28 +81,45 @@ def customer_Record():
 # This function take parameters and check it's exist in a list and change status book for
 # unavailabe
 def lend_book():
+    global books, customers
+    print("📚=== Lending Book ===📚")
     book_ISBN = input("Enter book ISBN: ")
     for book in books:
         if book["ISBN"] == book_ISBN:
             customer_id = input("Enter customer id (Soc-number): ")
             for customer in customers:
                 if customer["Customer"] == customer_id:
-                    book["Status"] = "Unavalible"
+                    book["Status"] = "Unavailable"
                     print(
                         f"The status unavailable change for book {book["Title"]} Sucessful!✅ "
                     )
-                else:
-                    print("❌ Customer doen't exist! ")
-        else:
-            print("❌ Book doesn't exist! ")
 
 
+# This function take a book returning of customer using ISBN number to find book in BD system
 def return_Book():
-    pass
+    global books
+    print("📚=== Return Book ===📚")
+    to_Return = input("Please Enter ISBN number of book returning: ")
+    for book in books:
+        if book["ISBN"] == to_Return:
+            if book["Status"] == "Unavailable":
+                book["Status"] = "Available"
+                print(
+                    f"The status available change for book {book["Title"]} Sucessful!✅"
+                )
 
 
+# This function show book borrowing on a list
 def borrow_Status():
-    print(books)
+    borrow_list = []
+    for book in books:
+        if book["Status"] == "Unavailable":
+            borrow_list = book
+
+    if borrow_list:
+        print(f"{borrow_list}\n")
+    else:
+        print("📚No books on borrowing!📚")
 
 
 if __name__ == "__main__":
