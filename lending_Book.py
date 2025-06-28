@@ -89,7 +89,10 @@ def book_Record() -> None:
 
 
 # This function create a new customer at the customer list
-def customer_Record():
+def customer_Record() -> None:
+    """
+    Create customer list with dictionary inside about name and phone number
+    """
     global customers
     print("🤓===Create a new Customer===🤓")
     name: str = input("Enter full name: ")
@@ -107,7 +110,10 @@ def customer_Record():
 
 # This function take parameters and check it's exist in a list and change status book for
 # unavailabe
-def lend_book():
+def lend_book() -> None:
+    """
+    Book lend administration with list and change the status available
+    """
     global books, customers
     print("📚=== Lending Book ===📚")
     book_ISBN: str = input("Enter book ISBN: ")
@@ -131,7 +137,10 @@ def lend_book():
 
 
 # This function take a book returning of customer using ISBN number to find book in BD system
-def return_Book():
+def return_Book() -> None:
+    """
+    Book return administration with list and change the status available
+    """
     global books
     print("📚=== Return Book ===📚")
     to_Return: str = input("Please Enter ISBN number of book returning: ")
@@ -148,7 +157,10 @@ def return_Book():
 
 
 # This function show book borrowing on a list
-def borrow_Status():
+def borrow_Status() -> None:
+    """
+    Show a list with borrowing books inside like dictionary.
+    """
     borrow_list = []
     for book in books:
         if book["Status"] == "Unavailable":
