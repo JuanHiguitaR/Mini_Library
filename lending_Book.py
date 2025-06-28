@@ -6,6 +6,9 @@ number = 0
 
 # Create def main to start the aplication. Inside has a option that connect with the functions.
 def main():
+    """
+    Directing to menu functions, no param, no return
+    """
     while True:
         match menu():
             case "1":
@@ -47,6 +50,11 @@ def menu() -> str:
 
 # this function create a id's to customers, it's connected with customer_Record() function
 def random_Id():
+    """Create number to customer function
+
+    Yields:
+        str: return the id number part
+    """
     global number
     while True:
         number += 1
@@ -56,6 +64,10 @@ def random_Id():
 
 # This function create a new book at the book list
 def book_Record():
+    """
+    Creat book list with dictionary inside about title, author, ISBN, status.
+    """
+
     global books
     print("📖===Create a new book===📖")
     title = input("Enter a book title: ")
@@ -78,6 +90,9 @@ def book_Record():
 
 # This function create a new customer at the customer list
 def customer_Record():
+    """
+    Create customer list with dictionary inside about name and phone number
+    """
     global customers
     print("🤓===Create a new Customer===🤓")
     name = input("Enter full name: ")
@@ -96,6 +111,9 @@ def customer_Record():
 # This function take parameters and check it's exist in a list and change status book for
 # unavailabe
 def lend_book():
+    """
+    Book lend administration with list and change the status available
+    """
     global books, customers
     print("📚=== Lending Book ===📚")
     book_ISBN = input("Enter book ISBN: ")
@@ -120,6 +138,9 @@ def lend_book():
 
 # This function take a book returning of customer using ISBN number to find book in BD system
 def return_Book():
+    """
+    Book return administration with list and change the status available
+    """
     global books
     print("📚=== Return Book ===📚")
     to_Return = input("Please Enter ISBN number of book returning: ")
@@ -137,6 +158,9 @@ def return_Book():
 
 # This function show book borrowing on a list
 def borrow_Status():
+    """
+    Show a list with borrowing books inside like dictionary.
+    """
     borrow_list = []
     for book in books:
         if book["Status"] == "Unavailable":
