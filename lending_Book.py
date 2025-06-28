@@ -1,10 +1,10 @@
 # Here has a globals variables
 books = []
-customer = []
+customers = []
 number = 0
 
 
-# Create def main to start the aplication. Inside has a Menu.
+# Create def main to start the aplication. Inside has a option that connect with the functions.
 def main():
     while True:
         match menu():
@@ -26,7 +26,7 @@ def main():
                 print("❌ Invalid option")
 
 
-# This function show menu and return the option customer select with string
+# This function show menu and return the option, customer enter string
 def menu() -> str:
     """
     function to show menu and take an option.
@@ -45,6 +45,7 @@ def menu() -> str:
     return input("Enter a valid option (0-5): ")
 
 
+# this function create a id's to customers, it's connected with customer_Record() function
 def random_Id():
     global number
     while True:
@@ -53,27 +54,47 @@ def random_Id():
         yield id
 
 
+# This function create a new book at the book list
 def book_Record():
     global books
     print("📖===Create a new book===📖")
     title = input("Enter a book title: ")
     author = input("Enter a book author: ")
     isbn = input("Enter a ISBN for book: ")
-    books.append({"Title": title, "Author": author, "ISBN": isbn})
-    print("Books List update sucessful!✅")
+    books.append(
+        {"Title": title, "Author": author, "ISBN": isbn, "Status": "available"}
+    )
+    print("Book List update sucessful!✅")
 
 
+# This function create a new customer at the customer list
 def customer_Record():
     global customer
-    print("🤓===Creater a new Customer===🤓")
+    print("🤓===Create a new Customer===🤓")
     name = input("Enter full name: ")
     phone_Number = input("Enter Phone number: ")
     automatic_Id = next(random_Id())
-    customer.append({"Name": name, "Phone": phone_Number, "Customer": automatic_Id})
+    customers.append({"Name": name, "Phone": phone_Number, "Customer": automatic_Id})
+    print("New customer add sucessful!✅")
 
 
+# This function take parameters and check it's exist in a list and change status book for
+# unavailabe
 def lend_book():
-    pass
+    book_ISBN = input("Enter book ISBN: ")
+    for book in books:
+        if book["ISBN"] == book_ISBN:
+            customer_id = input("Enter customer id (Soc-number): ")
+            for customer in customers:
+                if customer["Customer"] == customer_id:
+                    book["Status"] = "Unavalible"
+                    print(
+                        f"The status unavailable change for book {book["Title"]} Sucessful!✅ "
+                    )
+                else:
+                    print("❌ Customer doen't exist! ")
+        else:
+            print("❌ Book doesn't exist! ")
 
 
 def return_Book():
@@ -81,7 +102,7 @@ def return_Book():
 
 
 def borrow_Status():
-    print(customer)
+    print(books)
 
 
 if __name__ == "__main__":
