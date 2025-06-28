@@ -59,8 +59,17 @@ def book_Record():
     global books
     print("📖===Create a new book===📖")
     title = input("Enter a book title: ")
+    if not title:
+        print("❌ Must has a title! ❌")
+        return
     author = input("Enter a book author: ")
+    if not author:
+        print("❌ Must has a author! ❌")
+        return
     isbn = input("Enter a ISBN for book: ")
+    if not isbn:
+        print("❌ Must has a ISBN! ❌")
+        return
     books.append(
         {"Title": title, "Author": author, "ISBN": isbn, "Status": "Available"}
     )
@@ -72,7 +81,13 @@ def customer_Record():
     global customers
     print("🤓===Create a new Customer===🤓")
     name = input("Enter full name: ")
+    if not name:
+        print("❌ Must has a name! ❌")
+        return
     phone_Number = input("Enter Phone number: ")
+    if not phone_Number:
+        print("❌ Must has a phone number! ❌")
+        return
     automatic_Id = next(random_Id())
     customers.append({"Name": name, "Phone": phone_Number, "Customer": automatic_Id})
     print("New customer add sucessful!✅")
@@ -84,15 +99,23 @@ def lend_book():
     global books, customers
     print("📚=== Lending Book ===📚")
     book_ISBN = input("Enter book ISBN: ")
-    for book in books:
-        if book["ISBN"] == book_ISBN:
-            customer_id = input("Enter customer id (Soc-number): ")
-            for customer in customers:
-                if customer["Customer"] == customer_id:
-                    book["Status"] = "Unavailable"
-                    print(
-                        f"The status unavailable change for book {book["Title"]} Sucessful!✅ "
-                    )
+    if book_ISBN:
+        for book in books:
+            if book["ISBN"] == book_ISBN:
+                customer_id = input("Enter customer id (Soc-001): ")
+                if customer_id:
+                    for customer in customers:
+                        if customer["Customer"] == customer_id:
+                            book["Status"] = "Unavailable"
+                            print(
+                                f"The status unavailable change for book {book["Title"]} Sucessful!✅ "
+                            )
+                else:
+                    print("❌ Must has a valid Customer id ❌")
+                    return
+    else:
+        print("❌ Must has a valid ISBN book number ❌")
+        return
 
 
 # This function take a book returning of customer using ISBN number to find book in BD system
@@ -100,13 +123,16 @@ def return_Book():
     global books
     print("📚=== Return Book ===📚")
     to_Return = input("Please Enter ISBN number of book returning: ")
-    for book in books:
-        if book["ISBN"] == to_Return:
-            if book["Status"] == "Unavailable":
-                book["Status"] = "Available"
-                print(
-                    f"The status available change for book {book["Title"]} Sucessful!✅"
-                )
+    if to_Return:
+        for book in books:
+            if book["ISBN"] == to_Return:
+                if book["Status"] == "Unavailable":
+                    book["Status"] = "Available"
+                    print(
+                        f"The status available change for book {book["Title"]} Sucessful!✅"
+                    )
+    else:
+        print("❌ Must has a valid ISBN book number ❌")
 
 
 # This function show book borrowing on a list
