@@ -1,7 +1,7 @@
 # Here has a globals variables
-books = []
-customers = []
-number = 0
+books: list[dict] = []
+customers: list[dict] = []
+number: int = 0
 
 
 # Create def main to start the aplication. Inside has a option that connect with the functions.
@@ -50,23 +50,23 @@ def random_Id():
     global number
     while True:
         number += 1
-        id = f"Soc-{number:03d}"
+        id: str = f"Soc-{number:03d}"
         yield id
 
 
 # This function create a new book at the book list
-def book_Record():
+def book_Record() -> None:
     global books
     print("📖===Create a new book===📖")
-    title = input("Enter a book title: ")
+    title: str = input("Enter a book title: ")
     if not title:
         print("❌ Must has a title! ❌")
         return
-    author = input("Enter a book author: ")
+    author: str = input("Enter a book author: ")
     if not author:
         print("❌ Must has a author! ❌")
         return
-    isbn = input("Enter a ISBN for book: ")
+    isbn: str = input("Enter a ISBN for book: ")
     if not isbn:
         print("❌ Must has a ISBN! ❌")
         return
@@ -77,32 +77,32 @@ def book_Record():
 
 
 # This function create a new customer at the customer list
-def customer_Record():
+def customer_Record() -> None:
     global customers
     print("🤓===Create a new Customer===🤓")
-    name = input("Enter full name: ")
+    name: str = input("Enter full name: ")
     if not name:
         print("❌ Must has a name! ❌")
         return
-    phone_Number = input("Enter Phone number: ")
+    phone_Number: str = input("Enter Phone number: ")
     if not phone_Number:
         print("❌ Must has a phone number! ❌")
         return
-    automatic_Id = next(random_Id())
+    automatic_Id: str = next(random_Id())
     customers.append({"Name": name, "Phone": phone_Number, "Customer": automatic_Id})
     print("New customer add sucessful!✅")
 
 
 # This function take parameters and check it's exist in a list and change status book for
 # unavailabe
-def lend_book():
+def lend_book() -> None:
     global books, customers
     print("📚=== Lending Book ===📚")
-    book_ISBN = input("Enter book ISBN: ")
+    book_ISBN: str = input("Enter book ISBN: ")
     if book_ISBN:
         for book in books:
             if book["ISBN"] == book_ISBN:
-                customer_id = input("Enter customer id (Soc-001): ")
+                customer_id: str = input("Enter customer id (Soc-001): ")
                 if customer_id:
                     for customer in customers:
                         if customer["Customer"] == customer_id:
@@ -119,10 +119,10 @@ def lend_book():
 
 
 # This function take a book returning of customer using ISBN number to find book in BD system
-def return_Book():
+def return_Book() -> None:
     global books
     print("📚=== Return Book ===📚")
-    to_Return = input("Please Enter ISBN number of book returning: ")
+    to_Return: str = input("Please Enter ISBN number of book returning: ")
     if to_Return:
         for book in books:
             if book["ISBN"] == to_Return:
@@ -136,7 +136,7 @@ def return_Book():
 
 
 # This function show book borrowing on a list
-def borrow_Status():
+def borrow_Status() -> None:
     borrow_list = []
     for book in books:
         if book["Status"] == "Unavailable":
