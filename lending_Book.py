@@ -63,7 +63,7 @@ def random_Id():
 
 
 # This function create a new book at the book list
-def book_Record():
+def book_Record() -> None:
     """
     Creat book list with dictionary inside about title, author, ISBN, status.
     """
@@ -89,7 +89,7 @@ def book_Record():
 
 
 # This function create a new customer at the customer list
-def customer_Record():
+def customer_Record() -> None:
     """
     Create customer list with dictionary inside about name and phone number
     """
@@ -110,7 +110,7 @@ def customer_Record():
 
 # This function take parameters and check it's exist in a list and change status book for
 # unavailabe
-def lend_book():
+def lend_book() -> None:
     """
     Book lend administration with list and change the status available
     """
@@ -137,7 +137,7 @@ def lend_book():
 
 
 # This function take a book returning of customer using ISBN number to find book in BD system
-def return_Book():
+def return_Book() -> None:
     """
     Book return administration with list and change the status available
     """
@@ -157,7 +157,7 @@ def return_Book():
 
 
 # This function show book borrowing on a list
-def borrow_Status():
+def borrow_Status() -> None:
     """
     Show a list with borrowing books inside like dictionary.
     """
