@@ -6,6 +6,9 @@ number: int = 0
 
 # Create def main to start the aplication. Inside has a option that connect with the functions.
 def main():
+    """
+    Directing to menu functions, no param, no return
+    """
     while True:
         match menu():
             case "1":
@@ -47,6 +50,11 @@ def menu() -> str:
 
 # this function create a id's to customers, it's connected with customer_Record() function
 def random_Id():
+    """Create number to customer function
+
+    Yields:
+        str: return the id number part
+    """
     global number
     while True:
         number += 1
@@ -56,6 +64,10 @@ def random_Id():
 
 # This function create a new book at the book list
 def book_Record() -> None:
+    """
+    Creat book list with dictionary inside about title, author, ISBN, status.
+    """
+
     global books
     print("📖===Create a new book===📖")
     title: str = input("Enter a book title: ")
@@ -77,7 +89,7 @@ def book_Record() -> None:
 
 
 # This function create a new customer at the customer list
-def customer_Record() -> None:
+def customer_Record():
     global customers
     print("🤓===Create a new Customer===🤓")
     name: str = input("Enter full name: ")
@@ -95,7 +107,7 @@ def customer_Record() -> None:
 
 # This function take parameters and check it's exist in a list and change status book for
 # unavailabe
-def lend_book() -> None:
+def lend_book():
     global books, customers
     print("📚=== Lending Book ===📚")
     book_ISBN: str = input("Enter book ISBN: ")
@@ -119,7 +131,7 @@ def lend_book() -> None:
 
 
 # This function take a book returning of customer using ISBN number to find book in BD system
-def return_Book() -> None:
+def return_Book():
     global books
     print("📚=== Return Book ===📚")
     to_Return: str = input("Please Enter ISBN number of book returning: ")
@@ -136,7 +148,7 @@ def return_Book() -> None:
 
 
 # This function show book borrowing on a list
-def borrow_Status() -> None:
+def borrow_Status():
     borrow_list = []
     for book in books:
         if book["Status"] == "Unavailable":
